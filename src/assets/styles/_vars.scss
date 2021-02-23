@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+$base: 4px;
+
+// === COLORS ===
+
+$color-main: #2fcc2c;
+$color-black: #000;
+$color-white: #fff;
+
+// === / COLORS ===
+
+// === FONTS ===
+
+$fw-regular: 400;
+$fw-bold: 700;
+
+// === / FONTS ===
+
+// === MIXINS ===
+
+@mixin roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+@mixin transition {
+  transition: 0.2s all ease;
+}
+
+// === / MIXINS ===

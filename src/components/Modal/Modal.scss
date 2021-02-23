@@ -1,0 +1,48 @@
+@import '../../assets/styles/vars';
+
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+
+  &__bg {
+    width: 100%;
+    height: 100%;
+    background-color: $color-black;
+    opacity: 0.6;
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: $base * 10;
+    max-width: 640px;
+    background-color: $color-white;
+    border-radius: $base;
+
+    &-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: $base * 2;
+
+      &-icon {
+        @include transition;
+
+        width: $base * 6;
+        height: $base * 6;
+      }
+    }
+
+    &-close:hover {
+      .modal__content-close-icon {
+        opacity: 0.4;
+      }
+    }
+  }
+}
