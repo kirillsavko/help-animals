@@ -8,6 +8,7 @@ import Modal from 'components/Modal';
 import './MainView.scss';
 
 const MainView = (): JSX.Element => {
+
   return (
     <div>
       <Modal onClose={() => console.log('close')}>

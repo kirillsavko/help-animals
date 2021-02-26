@@ -1,3 +1,4 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -6,12 +7,19 @@ import Routes from 'Routes';
 
 import 'assets/styles/base.scss';
 
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache(),
+});
+
 const App = (): JSX.Element => (
-  <Suspense fallback={<FullPageLoader />}>
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
-  </Suspense>
+  <ApolloProvider client={client}>
+    <Suspense fallback={<FullPageLoader />}>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </Suspense>
+  </ApolloProvider>
 );
 
 export default App;
