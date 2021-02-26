@@ -15,16 +15,18 @@ const Routes =  (): JSX.Element => (
     <Route
       exact
       path={routes.main}
-    >
-      <MainView />
-    </Route>
+      component={(props) => (
+        <MainView {...props} />
+      )}
+    />
 
     <Route
       exact
       path={routes.contacts}
-    >
-      <ContactsView />
-    </Route>
+      component={(props) => (
+        <ContactsView {...props} />
+      )}
+    />
   </Switch>
 );
 
