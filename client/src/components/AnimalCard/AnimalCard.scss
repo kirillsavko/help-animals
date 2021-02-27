@@ -1,0 +1,21 @@
+@import '../../assets/styles/vars';
+
+.animal-card {
+  border: 1px solid gray;
+  border-radius: $base;
+  overflow: hidden;
+
+  &__img {
+    margin-bottom: $base * 4;
+  }
+
+  &__content {
+    padding-right: $base * 2;
+    padding-left: $base * 2;
+    padding-bottom: $base * 4;
+  }
+
+  &__name {
+    margin-bottom: $base * 2;
+  }
+}

@@ -1,15 +1,7 @@
 @import '../../assets/styles/vars';
 
 .logo {
-  &__link {
-    border-color: transparent;
-  }
-
-  &__link:hover {
-    .logo__icon path {
-      fill: darken($color-main, 10%);
-    }
-  }
+  border-color: transparent;
 
   &__icon {
     width: 40px;
@@ -20,5 +12,23 @@
 
       fill: $color-main;
     }
+  }
+}
+
+.logo:hover {
+  path {
+    fill: darken($color-main, 10%);
+  }
+}
+
+.logo.white {
+  path {
+    fill: $color-white;
+  }
+}
+
+.logo.white:hover {
+  path {
+    fill: darken($color-white, 10%);
   }
 }

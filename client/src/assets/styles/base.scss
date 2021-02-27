@@ -37,6 +37,11 @@ h1 {
   font-weight: $fw-regular;
 }
 
+h5 {
+  margin-bottom: $base * 2;
+  font-size: $base * 5;
+}
+
 a {
   @include transition;
 
@@ -47,4 +52,10 @@ a {
   &:hover {
     border-color: transparent;
   }
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
 }

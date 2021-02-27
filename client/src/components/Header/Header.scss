@@ -1,14 +1,13 @@
 @import '../../assets/styles/vars';
 
 .header {
-  padding: $base * 2 0;
+  padding-top: $base * 2;
+  padding-bottom: $base * 2;
+  box-shadow: 0 0 $base $color-gray;
 
   &__wrap {
     display: flex;
     justify-content: space-between;
-  }
-
-  &__btn {
-    height: 100%;
+    align-items: center;
   }
 }

@@ -8,30 +8,61 @@ const PORT = 4000;
 
 app.use(cors());
 
-const users = [
+const animals = [
   {
     id: 1,
-    username: 'Vasya',
-    age: 25,
+    name: 'Bear',
+    desc: 'Bear description',
+    image: 'assets/img/animals/bear.jpg',
+  },
+  {
+    id: 2,
+    name: 'Elephant',
+    desc: 'Elephant description',
+    image: 'assets/img/animals/elephant.jpg',
+  },
+  {
+    id: 3,
+    name: 'Giraffe',
+    desc: 'Giraffe description',
+    image: 'assets/img/animals/giraffe.jpg',
+  },
+  {
+    id: 4,
+    name: 'Monkey',
+    desc: 'Monkey description',
+    image: 'assets/img/animals/monkey.jpg',
+  },
+  {
+    id: 5,
+    name: 'Panda',
+    desc: 'Panda description',
+    image: 'assets/img/animals/panda.jpg',
+  },
+  {
+    id: 6,
+    name: 'Rabbit',
+    desc: 'Rabbit description',
+    image: 'assets/img/animals/rabbit.jpg',
   },
 ];
 
 const root = {
-  getAllUsers: () => {
-    return users;
+  getAllAnimals: () => {
+    return animals;
   },
-  getUser: ({ id }) => {
-    return users.find((user) => user.id == id);
+  getAnimal: ({ id }) => {
+    return animals.find((animal) => animal.id == id);
   },
-  createUser: ({ input }) => {
-    const user = {
+  createAnumal: ({ input }) => {
+    const animal = {
       id: Date.now(),
       ...input,
     };
 
-    users.push(user);
+    animals.push(animal);
 
-    return user;
+    return animal;
   }
 };
 

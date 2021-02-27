@@ -1,17 +1,14 @@
 @import '../../assets/styles/vars';
 
 .footer {
-  padding: 20px 0;
+  padding-top: $base * 5;
+  padding-bottom: $base * 5;
   background-color: $color-main;
 
   &__wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  &__email {
-    color: $color-white;
   }
 
   &__copyright {
@@ -23,11 +20,11 @@
     align-items: center;
 
     &-link {
-      width: 20px;
-      height: 20px;
+      width: $base * 5;
+      height: $base * 5;
 
       & + & {
-        margin-left: 10px;
+        margin-left: $base * 2;
       }
 
       svg {

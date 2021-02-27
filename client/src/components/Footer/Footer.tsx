@@ -1,3 +1,5 @@
+import Logo from 'components/Logo';
+
 import './Footer.scss';
 
 import { ReactComponent as InstIcon } from 'assets/img/icons/inst-icon.svg';
@@ -7,12 +9,7 @@ const Footer = (): JSX.Element => (
   <footer className='footer'>
     <div className='container'>
       <div className='footer__wrap'>
-        <a
-          href='mailto:kirillsavko25@gmail.com'
-          className='footer__email'
-        >
-         kirillsavko25@gmail.com 
-        </a>
+        <Logo white />
         <div className='footer__copyright'>© Copyright 2021</div>
         <div className='footer__socials'>
           <a
