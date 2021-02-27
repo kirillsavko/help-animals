@@ -1,0 +1,24 @@
+@import '../../assets/styles/vars';
+
+.logo {
+  &__link {
+    border-color: transparent;
+  }
+
+  &__link:hover {
+    .logo__icon path {
+      fill: darken($color-main, 10%);
+    }
+  }
+
+  &__icon {
+    width: 40px;
+    height: auto;
+
+    path {
+      @include transition;
+
+      fill: $color-main;
+    }
+  }
+}

@@ -32,6 +32,19 @@ button {
 }
 
 h1 {
+  margin-bottom: $base * 5;
   font-size: $base * 7;
   font-weight: $fw-regular;
+}
+
+a {
+  @include transition;
+
+  color: $color-main;
+  border-bottom: 1px solid;
+  text-decoration: none;
+
+  &:hover {
+    border-color: transparent;
+  }
 }

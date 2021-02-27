@@ -1,0 +1,14 @@
+@import '../../assets/styles/vars';
+
+.header {
+  padding: $base * 2 0;
+
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    height: 100%;
+  }
+}
