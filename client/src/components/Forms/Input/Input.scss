@@ -1,0 +1,32 @@
+@import '../../../assets/styles/vars';
+
+.input {
+  @include transition;
+  
+  min-width: 300px;
+  padding-top: $base * 2;
+  padding-bottom: $base * 2;
+  padding-right: $base * 4;
+  padding-left: $base * 4;
+  font-size: $base * 4;
+  border: 1px solid $color-gray;
+}
+
+.label {
+  &__text {
+    @include transition;
+
+    margin-bottom: $base * 2;
+    display: block;
+  }
+}
+
+.label.error {
+  .label__text {
+    color: $color-red;
+  }
+
+  .input {
+    border-color: $color-red;
+  }
+}

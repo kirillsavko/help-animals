@@ -6,14 +6,13 @@ const schema = buildSchema(`
     id: ID
     name: String
     desc: String
-    image: String
+    img: String
   }
 
   input AnimalInput {
-    id: ID!
     name: String!
     desc: String!
-    image: String!
+    img: String
   }
 
   type Query {

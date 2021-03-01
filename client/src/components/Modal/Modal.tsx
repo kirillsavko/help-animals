@@ -17,7 +17,7 @@ const Modal = ({
     <div className='modal'>
       <button
         onClick={onClose}
-        className='modal__bg btn-clear'
+        className='modal__bg'
       />
       <div className='modal__content'>
         <button

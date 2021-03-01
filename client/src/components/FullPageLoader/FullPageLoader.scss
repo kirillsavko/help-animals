@@ -1,15 +1,8 @@
 @import '../../assets/styles/vars';
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .full-page-loader {
+  @include animation-rotate;
+
   position: absolute;
   top: 0;
   right: 0;
@@ -23,7 +16,6 @@
   &__icon {
     width: 100px;
     height: 100px;
-    animation: 3s linear infinite rotation;
 
     path {
       fill: $color-main;

@@ -1,68 +1,32 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema/schema');
 const cors = require('cors');
+const mongoose = require('mongoose');
+const Animals = require('./models/animal');
+const schema = require('./schema/schema');
 
 const app = express();
 const PORT = 4000;
 
-app.use(cors());
+mongoose.connect(
+  'mongodb+srv://admin:admin@help-animals-cluster.eh4nl.mongodb.net/help-animals?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+);
 
-const animals = [
-  {
-    id: 1,
-    name: 'Bear',
-    desc: 'Bear description',
-    image: 'assets/img/animals/bear.jpg',
-  },
-  {
-    id: 2,
-    name: 'Elephant',
-    desc: 'Elephant description',
-    image: 'assets/img/animals/elephant.jpg',
-  },
-  {
-    id: 3,
-    name: 'Giraffe',
-    desc: 'Giraffe description',
-    image: 'assets/img/animals/giraffe.jpg',
-  },
-  {
-    id: 4,
-    name: 'Monkey',
-    desc: 'Monkey description',
-    image: 'assets/img/animals/monkey.jpg',
-  },
-  {
-    id: 5,
-    name: 'Panda',
-    desc: 'Panda description',
-    image: 'assets/img/animals/panda.jpg',
-  },
-  {
-    id: 6,
-    name: 'Rabbit',
-    desc: 'Rabbit description',
-    image: 'assets/img/animals/rabbit.jpg',
-  },
-];
+app.use(cors());
 
 const root = {
   getAllAnimals: () => {
-    return animals;
+    return Animals.find({});
   },
   getAnimal: ({ id }) => {
-    return animals.find((animal) => animal.id == id);
+    return Animals.findById(id);
   },
-  createAnumal: ({ input }) => {
-    const animal = {
-      id: Date.now(),
-      ...input,
-    };
-
-    animals.push(animal);
-
-    return animal;
+  createAnimal: ({ input }) => {
+    return Animals.create(input);
   }
 };
 
@@ -71,6 +35,9 @@ app.use('/graphql', graphqlHTTP({
   schema,
   rootValue: root,
 }));
+
+const dbConnection = mongoose.connection;
+dbConnection.on('error', (err) => console.log(`Connection error: ${err}`));
 
 app.listen(PORT, (err) => {
   err ? console.log(error) : console.log('server started');

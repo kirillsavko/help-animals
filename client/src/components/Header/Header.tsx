@@ -1,23 +1,40 @@
+import { useState } from 'react';
+
 import Logo from 'components/Logo';
-import Button from 'components/Button';
+import Button from 'components/Forms/Button';
+import Modal from 'components/Modal';
+import AddAnimalForm from 'components/Forms/AddAnimalForm';
 
 import './Header.scss';
 
 const Header = (): JSX.Element => {
+  // Need change to false value
+  const [isActiveModal, setIsActiveModal] = useState<boolean>(false);
+
+  const openModal = () => setIsActiveModal(true);
+  const closeModal = () => setIsActiveModal(false);
+  
   return (
-    <header className='header'>
-      <div className='container'>
-        <div className='header__wrap'>
-          <Logo />
-          <Button
-            onClick={() => console.log('qqq')}
-            className='header__btn'
-          >
-            Добавить питомца
-          </Button>
+    <>
+      {isActiveModal && (
+        <Modal onClose={closeModal}>
+          <AddAnimalForm />
+        </Modal>
+      )}
+      <header className='header'>
+        <div className='container'>
+          <div className='header__wrap'>
+            <Logo />
+            <Button
+              onClick={openModal}
+              className='header__btn'
+            >
+              Добавить питомца
+            </Button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

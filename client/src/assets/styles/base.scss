@@ -1,4 +1,5 @@
 @import './vars';
+@import './toastify';
 
 *,
 *::before,
@@ -28,6 +29,13 @@ body {
 }
 
 button {
+  @include roboto;
+}
+
+input,
+textarea,
+input::placeholder,
+textarea::placeholder {
   @include roboto;
 }
 

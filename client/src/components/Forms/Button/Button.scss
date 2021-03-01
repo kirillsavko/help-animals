@@ -1,0 +1,46 @@
+@import '../../../assets/styles/vars';
+
+.btn {
+  @include transition;
+
+  position: relative;
+  padding: $base * 3 $base * 2;
+  overflow: hidden;
+  background-color: $color-main;
+  border: none;
+  border-radius: $base;
+  color: $color-white;
+  cursor: pointer;
+
+  &:not([disabled]):hover {
+    background-color: darken($color-main, 10%);
+  }
+
+  &[disabled] {
+    opacity: 0.7;
+    cursor: default;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: inherit;
+    display: grid;
+    place-items: center;
+    cursor: default;
+
+    &-icon {
+      @include animation-rotate;
+
+      width: auto;
+      height: 80%;
+  
+      path {
+        fill: $color-white;
+      }
+    }
+  }
+} 

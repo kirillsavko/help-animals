@@ -8,6 +8,7 @@ $color-main: #2f8df7;
 $color-black: #000;
 $color-white: #fff;
 $color-gray: #b3b3b3;
+$color-red: #d11818;
 
 // === / COLORS ===
 
@@ -28,4 +29,21 @@ $fw-bold: 700;
   transition: 0.2s all ease;
 }
 
+@mixin animation-rotate {
+  animation: 3s linear infinite rotation;
+}
+
 // === / MIXINS ===
+
+// === ANIMATIONS ===
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// === / ANIMATIONS ===
