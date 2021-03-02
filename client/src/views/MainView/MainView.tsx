@@ -5,7 +5,7 @@ import React, {
 import { useQuery } from '@apollo/client';
 
 import { AnimalContext } from 'contexts/AnimalContext';
-import { GET_ALL_ANIMALS } from 'queries/animal';
+import { GET_ALL_ANIMALS } from './queries';
 
 import AnimalCard from 'components/AnimalCard';
 

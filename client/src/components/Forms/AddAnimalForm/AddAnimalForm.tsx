@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import { AnimalContext } from 'contexts/AnimalContext';
-import { ADD_ANIMAL } from 'mutations/animal';
+import { ADD_ANIMAL } from './mutations';
 
 import Input from 'components/Forms/Input';
 import InputGroup from 'components/Forms/InputGroup';
