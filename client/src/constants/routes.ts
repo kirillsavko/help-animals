@@ -1,4 +1,5 @@
 export const routes = {
   main: '/',
-  contacts: '/contacts',
+  animal: '/animal/:id',
+  getAnimal: (id) => `/animal/${id}`,
 };

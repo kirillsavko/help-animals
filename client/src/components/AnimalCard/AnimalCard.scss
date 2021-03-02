@@ -1,9 +1,17 @@
 @import '../../assets/styles/vars';
 
 .animal-card {
-  border: 1px solid gray;
+  @include transition;
+
+  border: 1px solid $color-gray;
   border-radius: $base;
+  color: $color-black;
   overflow: hidden;
+
+  &:hover {
+    border-color: $color-gray;
+    box-shadow: 0 0 $base * 2 $color-gray; 
+  }
 
   &__img {
     margin-bottom: $base * 4;

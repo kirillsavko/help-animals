@@ -7,3 +7,11 @@ export const GET_ALL_ANIMALS = gql`
     }
   }
 `;
+
+export const GET_ANIMAL = gql`
+  query($id: ID) {
+    getAnimal(id: $id) {
+      id, name, desc, img
+    }
+  }
+`;

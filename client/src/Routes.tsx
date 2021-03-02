@@ -11,6 +11,7 @@ import BaseLayout from 'components/hoc/BaseLayout';
 
 // Views
 const MainView = React.lazy(() => import('views/MainView'));
+const AnimalView = React.lazy(() => import('views/AnimalView'));
 
 const Routes =  (): JSX.Element => (
   <Switch>
@@ -23,6 +24,16 @@ const Routes =  (): JSX.Element => (
             <MainView {...props} />
           </BaseLayout>
         </AnimalContextProvider>
+      )}
+    />
+
+    <Route
+      exact
+      path={routes.animal}
+      component={(props) => (
+        <BaseLayout>
+          <AnimalView {...props} />
+        </BaseLayout>
       )}
     />
   </Switch>

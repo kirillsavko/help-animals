@@ -32,6 +32,7 @@ const MainView = (): JSX.Element => {
               {animalContext.animals.map((item) => (
                 <React.Fragment key={item.id}>
                   <AnimalCard
+                    id={item.id}
                     name={item.name}
                     desc={item.desc}
                     img={item.image}
