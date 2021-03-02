@@ -15,6 +15,10 @@ body {
 }
 
 .container {
+  @include _1440 {
+    max-width: 100%;
+  }
+
   width: 1440px;
   margin: 0 auto;
   padding-right: 15px;
@@ -37,6 +41,10 @@ textarea,
 input::placeholder,
 textarea::placeholder {
   @include roboto;
+}
+
+textarea {
+  resize: vertical;
 }
 
 h1 {

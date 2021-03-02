@@ -33,6 +33,30 @@ $fw-bold: 700;
   animation: 3s linear infinite rotation;
 }
 
+@mixin _1440 {
+  @media only screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin _1024 {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin _768 {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin _576 {
+  @media only screen and (max-width: 576px) {
+    @content;
+  }
+}
+
 // === / MIXINS ===
 
 // === ANIMATIONS ===

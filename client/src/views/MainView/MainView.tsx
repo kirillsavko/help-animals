@@ -25,19 +25,21 @@ const MainView = (): JSX.Element => {
   return (
     <div className='main-view'>
       <div className='container'>
-        <h1 className='main-view__title'>Список будущих питомцев</h1>
         {animalContext.animals?.length > 0 && (
-          <div className='main-view__animals-list'>
-            {animalContext.animals.map((item) => (
-              <React.Fragment key={item.id}>
-                <AnimalCard
-                  name={item.name}
-                  desc={item.desc}
-                  img={item.image}
-                />
-              </React.Fragment>
-            ))}
-          </div>
+          <>
+            <h1 className='main-view__title'>Список будущих питомцев</h1>
+            <div className='main-view__animals-list'>
+              {animalContext.animals.map((item) => (
+                <React.Fragment key={item.id}>
+                  <AnimalCard
+                    name={item.name}
+                    desc={item.desc}
+                    img={item.image}
+                  />
+                </React.Fragment>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -19,6 +19,10 @@
     margin-bottom: $base * 2;
     display: block;
   }
+
+  &__error-msg {
+    color: $color-red;
+  }
 }
 
 .label.error {

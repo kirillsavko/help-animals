@@ -1,9 +1,23 @@
+@import '../../assets/styles/_vars.scss';
+
 .main-view {
   &__title {
     text-align: center;
   }
 
   &__animals-list {
+    @include _1024 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include _768 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include _576 {
+      grid-template-columns: 1fr;
+    }
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 10px;

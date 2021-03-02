@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 import { AnimalContext } from 'contexts/AnimalContext';
 import { ADD_ANIMAL } from 'mutations/animal';
@@ -24,18 +26,16 @@ const AddAnimalFormPropsDefault = {
 const AddAnimalForm = ({
   onEnd,
 }: AddAnimalFormProps): JSX.Element => {
-  const [name, setName] = useState<string>('');
-  const [desc, setDesc] = useState<string>('');
   const [isLoadingRequest, setIsLoadingRequest] = useState<boolean>(false);
 
   const animalContext = useContext(AnimalContext);
 
   const [addAnimal] = useMutation(ADD_ANIMAL);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    
+  const onSubmit = (values) => {
     setIsLoadingRequest(true);
+
+    const { name, desc } = values;
 
     addAnimal({
       variables: {
@@ -50,9 +50,6 @@ const AddAnimalForm = ({
         updatedAnimals.push(data.createAnimal);
 
         animalContext.setAnimals([...updatedAnimals]);
-
-        setName('');
-        setDesc('');
       })
       .catch(() => toast.error('Что-то пошло не так'))
       .finally(() => {
@@ -61,33 +58,74 @@ const AddAnimalForm = ({
       });
   };
 
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Обязательное поле'),
+    desc: Yup.string().required('Обязательное поле'),
+  });
+
   return (
-    <div className='add-animal-form'>
-      <InputGroup>
-        <Input
-          label='Имя питомца'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </InputGroup>
-      <InputGroup>
-        <Input
-          label='Описание питомца'
-          textarea
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-        />
-      </InputGroup>
-      <InputGroup className='add-animal-form__btn'>
-        <Button
-          onClick={onSubmit}
-          disabled={isLoadingRequest}
-          loading={isLoadingRequest}
-        >
-          Добавить питомца
-        </Button>
-      </InputGroup>
-    </div>
+    <Formik
+      onSubmit={(values) => onSubmit(values)}
+      initialValues={{
+        name: '',
+        desc: '',
+      }}
+      validationSchema={validationSchema}
+    >
+      {(props) => {
+        const {
+          values,
+          errors,
+          handleChange,
+          handleSubmit,
+          touched,
+          setFieldTouched,
+        } = props;
+
+        return (
+          <form
+            onSubmit={handleSubmit}
+            className='add-animal-form'
+          >
+            <InputGroup>
+              <Input
+                id='name'
+                label='Имя питомца'
+                value={values.name}
+                onChange={(e) => {
+                  setFieldTouched('name');
+                  handleChange(e);
+                }}
+                isValid={touched.name ? !errors.name : true}
+                errorMsg={errors.name}
+              />
+            </InputGroup>
+            <InputGroup>
+              <Input
+                id='desc'
+                label='Описание питомца'
+                value={values.desc}
+                onChange={(e) => {
+                  setFieldTouched('desc');
+                  handleChange(e);
+                }}
+                isValid={touched.desc ? !errors.desc : true}
+                errorMsg={errors.desc}
+                textarea
+              />
+            </InputGroup>
+            <InputGroup className='add-animal-form__btn'>
+              <Button
+                type='submit'
+                disabled={isLoadingRequest}
+                loading={isLoadingRequest}
+              >
+                Добавить питомца
+              </Button>
+            </InputGroup>
+          </form>
+      )}}
+    </Formik>
   );
 };
 
