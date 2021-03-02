@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 
+import { AnimalContext } from 'contexts/AnimalContext';
 import { ADD_ANIMAL } from 'mutations/animal';
 
 import Input from 'components/Forms/Input';
@@ -10,19 +11,33 @@ import Button from 'components/Forms/Button';
 
 import './AddAnimalForm.scss';
 
-const AddAnimalForm = (): JSX.Element => {
+type AddAnimalFormProps = {
+  onEnd?: () => void;
+}
+
+const AddAnimalFormPropsDefault = {
+  onEnd: () => {
+    return;
+  },
+}
+
+const AddAnimalForm = ({
+  onEnd,
+}: AddAnimalFormProps): JSX.Element => {
   const [name, setName] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [isLoadingRequest, setIsLoadingRequest] = useState<boolean>(false);
 
-  const [newAnimal] = useMutation(ADD_ANIMAL);
+  const animalContext = useContext(AnimalContext);
+
+  const [addAnimal] = useMutation(ADD_ANIMAL);
 
   const onSubmit = (e) => {
     e.preventDefault();
     
     setIsLoadingRequest(true);
 
-    newAnimal({
+    addAnimal({
       variables: {
         input: {
           name,
@@ -30,12 +45,20 @@ const AddAnimalForm = (): JSX.Element => {
         }
       }
     })
-      .then(() => {
+      .then(({ data }) => {
+        const updatedAnimals = [...animalContext.animals];
+        updatedAnimals.push(data.createAnimal);
+
+        animalContext.setAnimals([...updatedAnimals]);
+
         setName('');
         setDesc('');
       })
       .catch(() => toast.error('Что-то пошло не так'))
-      .finally(() => setIsLoadingRequest(false));
+      .finally(() => {
+        setIsLoadingRequest(false);
+        onEnd();
+      });
   };
 
   return (
@@ -66,6 +89,8 @@ const AddAnimalForm = (): JSX.Element => {
       </InputGroup>
     </div>
   );
-}
+};
+
+AddAnimalForm.defaultProps = AddAnimalFormPropsDefault;
 
 export default AddAnimalForm;

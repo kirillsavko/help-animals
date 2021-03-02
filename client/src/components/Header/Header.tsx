@@ -8,7 +8,6 @@ import AddAnimalForm from 'components/Forms/AddAnimalForm';
 import './Header.scss';
 
 const Header = (): JSX.Element => {
-  // Need change to false value
   const [isActiveModal, setIsActiveModal] = useState<boolean>(false);
 
   const openModal = () => setIsActiveModal(true);
@@ -18,7 +17,7 @@ const Header = (): JSX.Element => {
     <>
       {isActiveModal && (
         <Modal onClose={closeModal}>
-          <AddAnimalForm />
+          <AddAnimalForm onEnd={closeModal} />
         </Modal>
       )}
       <header className='header'>
