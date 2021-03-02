@@ -8,14 +8,6 @@ const schema = require('./schema/schema');
 const app = express();
 const PORT = 4000;
 
-mongoose.connect(
-  'mongodb+srv://admin:admin@help-animals-cluster.eh4nl.mongodb.net/help-animals?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-);
-
 app.use(cors());
 
 const root = {
