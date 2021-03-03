@@ -7,12 +7,14 @@ const schema = buildSchema(`
     name: String
     desc: String
     img: String
+    age: Float
   }
 
   input AnimalInput {
     name: String!
     desc: String!
     img: String
+    age: Float!
   }
 
   type Query {

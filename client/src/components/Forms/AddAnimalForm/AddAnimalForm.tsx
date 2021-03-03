@@ -35,13 +35,18 @@ const AddAnimalForm = ({
   const onSubmit = (values) => {
     setIsLoadingRequest(true);
 
-    const { name, desc } = values;
+    const {
+      name,
+      desc,
+      age,
+    } = values;
 
     addAnimal({
       variables: {
         input: {
           name,
-          desc
+          desc,
+          age,
         }
       }
     })
@@ -61,6 +66,7 @@ const AddAnimalForm = ({
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Обязательное поле'),
     desc: Yup.string().required('Обязательное поле'),
+    age: Yup.number().required('Обязательно поле').typeError('Поле должно быть числом'),
   });
 
   return (
@@ -69,6 +75,7 @@ const AddAnimalForm = ({
       initialValues={{
         name: '',
         desc: '',
+        age: '',
       }}
       validationSchema={validationSchema}
     >
@@ -112,6 +119,20 @@ const AddAnimalForm = ({
                 isValid={touched.desc ? !errors.desc : true}
                 errorMsg={errors.desc}
                 textarea
+              />
+            </InputGroup>
+            <InputGroup>
+              <Input
+                id='age'
+                label='Возраст питомца (кол-во лет)'
+                value={values.age}
+                onChange={(e) => {
+                  setFieldTouched('age');
+                  handleChange(e);
+                }}
+                isValid={touched.age ? !errors.age : true}
+                errorMsg={errors.age}
+                type='number'
               />
             </InputGroup>
             <InputGroup className='add-animal-form__btn'>

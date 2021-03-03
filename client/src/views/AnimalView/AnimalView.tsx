@@ -11,6 +11,7 @@ const AnimalView = ({
   const [animal, setAnimal] = useState({
     name: '',
     desc: '',
+    age: null,
   });
 
   const getIdByPathname = () => {
@@ -34,10 +35,16 @@ const AnimalView = ({
   return (
     <div className='container'>
       <h1>
+        <b>Имя: </b>
         {animal?.name}
       </h1>
       <p>
+        <b>Описание: </b>
         {animal?.desc}
+      </p>
+      <p>
+        <b>Возраст (кол-во лет): </b>
+        {animal?.age}
       </p>
     </div>
   );

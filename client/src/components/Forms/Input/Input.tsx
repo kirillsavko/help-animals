@@ -10,8 +10,9 @@ type InputProps = {
   isValid?: boolean;
   onChange: (e) => void;
   placeholder?: string;
-  value?: string;
+  value?: string | number | null;
   errorMsg?: string | string[] | FormikErrors<any> | FormikErrors<any>[];
+  type?: 'text' | 'number';
 }
 
 const InputDefaultProps = {
@@ -22,6 +23,7 @@ const InputDefaultProps = {
   placeholder: '',
   value: '',
   errorMsg: '',
+  type: 'text',
 };
 
 const Input = ({
@@ -33,6 +35,7 @@ const Input = ({
   placeholder,
   value,
   errorMsg,
+  type,
 }: InputProps): JSX.Element => {
   return (
     <label className={classnames('label', {
@@ -53,8 +56,8 @@ const Input = ({
         />
       ) : (
         <input
+          type={type}
           id={id}
-          type='text'
           onChange={onChange}
           value={value}
           placeholder={placeholder}

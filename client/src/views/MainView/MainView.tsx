@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useContext,
-} from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { AnimalContext } from 'contexts/AnimalContext';
@@ -14,9 +11,12 @@ import './MainView.scss';
 const MainView = (): JSX.Element => {
   const animalContext = useContext(AnimalContext);
 
-  const { data, loading } = useQuery(GET_ALL_ANIMALS);
+  const { data, loading } = useQuery(GET_ALL_ANIMALS, {
+    fetchPolicy: 'network-only',
+  });
 
   useEffect(() => {
+
     if (!loading) {
       animalContext?.setAnimals([...data.getAllAnimals]);
     }
